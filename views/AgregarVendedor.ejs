@@ -1,0 +1,42 @@
+<%- include("templates/Head") %>
+    <%- include("templates/Navbar") %>
+
+        <div class="container">
+
+            <form method="POST" action="/CMS2/AgregarVendedor" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre del Vendedor</label>
+                    <input type="text" class="form-control" name="Nombre" placeholder="Nombre...">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Celular</label>
+                    <input type="number" class="form-control" name="Celular" placeholder="Numero...">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Correo</label>
+                    <input type="email" class="form-control" name="Correo" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Contraseña del Vendedor</label>
+                    <input type="text" class="form-control" name="Contraseña" placeholder="Contraseña...">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="image">
+                        <label class="custom-file-label" for="inputGroupFile02"
+                            aria-describedby="inputGroupFileAddon02">Seleccionar Foto</label>
+                    </div>
+
+                </div>
+                <button class="btn-primary" type="submit">Agregar Nuevo Vendedor</button>
+            </form>
+        </div>
+
+
+        </div>
+
+
+
+        <%- include("templates/Footer") %>

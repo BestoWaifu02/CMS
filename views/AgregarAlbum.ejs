@@ -1,0 +1,31 @@
+<%- include("templates/Head") %>
+    <%- include("templates/Navbar") %>
+
+        <body>
+            <div class="container">
+                <h1>Subir Imagenes Para Nuevo Album</h1>
+
+                <form method="POST" action="/CMS2/AgregarAlbum" enctype="multipart/form-data">
+                    <label for="exampleFormControlInput1">Nombre del Album</label>
+                    <input type="text" class="form-control" name="NombreAlbum" placeholder="Nombre...">
+                    <!-- <input type="file" name="image" multiple>
+                    <input type="submit"> -->
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image" multiple>
+                            <label class="custom-file-label" for="inputGroupFile02"
+                                aria-describedby="inputGroupFileAddon02">Seleccionar Imagenes</label>
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear Album</button>
+                </form>
+
+            </div>
+
+
+
+        </body>
+
+
+        <%- include("templates/Footer") %>

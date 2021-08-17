@@ -1,0 +1,102 @@
+<%- include("templates/Head") %>
+    <%- include("templates/Navbar") %>
+
+        <div class="container">
+            <form method="POST" action="/CMS2/AgregarCasa">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre de la Casa</label>
+                    <input type="text" class="form-control" name='NombreCasa' placeholder="Nombre de la Casa">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Numero de Camas</label>
+                    <select class="form-control" name="NumeroCamas">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Numero de Baños</label>
+                    <select class="form-control" name="NumeroBanios">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Numero de Estacionamientoss</label>
+                    <select class="form-control" name="NumeroEstacionamientos">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Superficie</label>
+                    <input type="number" class="form-control" name="Superficie">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Descripcion</label>
+                    <textarea class="form-control" name="Descripcion" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Precio</label>
+                    <input type="number" class="form-control" name="Precio">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Tipo de Vivienda</label>
+                    <select class="form-control" name="TipoVivienda">
+                        <option>Casa</option>
+                        <option>Departanento</option>
+                        <option>Rancho</option>
+                        <option>Quinta</option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Nombre del album</label>
+                    <select class="form-control" name="AlbumFotos">
+                        <% data.forEach(album=> { %>
+                            <option value=<%=album.idAlbum%>>
+                                <%=album.NombreAlbum%>
+                            </option>
+                            <% }); %>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Vendedor</label>
+                    <select class="form-control" name="Vendedor">
+                        <% data2.forEach(Vendedor=> { %>
+                            <option value=<%=Vendedor.idVendedor%>>
+                                <%=Vendedor.Nombre%>
+                            </option>
+                            <% }); %>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Ubicacion</label>
+                    <select class="form-control" name="Ubicacion">
+                        <% data3.forEach(Calle=> { %>
+                            <option value=<%=Calle.idCallesMazatlan%>>
+                                <%=Calle.NombreCalle%>
+                            </option>
+                            <% }); %>
+
+                    </select>
+                </div>
+                <button class="btn-primary" type="submit">Agregar Nueva Casa</button>
+            </form>
+        </div>
+
+
+
+        <%- include("templates/Footer") %>
