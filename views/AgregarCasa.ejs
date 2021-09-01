@@ -1,102 +1,167 @@
-<%- include("templates/Head") %>
-    <%- include("templates/Navbar") %>
+<% if(login) { %>
+    <%- include("templates/Head") %>
+        <%- include("templates/Navbar") %>
+            <div class="container">
+                <form method="POST" action="/CMS2/AgregarCasa">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombre de la Casa</label>
+                        <input type="text" class="form-control" name='NombreCasa' placeholder="Nombre de la Casa">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Numero de Camas</label>
+                        <select class="form-control" name="NumeroCamas" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Numero de Baños</label>
+                        <select class="form-control" name="NumeroBanios" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
 
-        <div class="container">
-            <form method="POST" action="/CMS2/AgregarCasa">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Nombre de la Casa</label>
-                    <input type="text" class="form-control" name='NombreCasa' placeholder="Nombre de la Casa">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Numero de Camas</label>
-                    <select class="form-control" name="NumeroCamas">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Numero de Baños</label>
-                    <select class="form-control" name="NumeroBanios">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Numero de Estacionamientoss</label>
+                        <select class="form-control" name="NumeroEstacionamientos" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Superficie</label>
+                        <input type="number" class="form-control" name="Superficie" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Descripcion</label>
+                        <textarea class="form-control" name="Descripcion" rows="3"></textarea required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Precio</label>
+                        <input type="number" class="form-control" name="Precio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Tipo de Vivienda</label>
+                        <select class="form-control" name="TipoVivienda" required>
+                            <option>Casa</option>
+                            <option>Departanento</option>
+                            <option>Rancho</option>
+                            <option>Quinta</option>
 
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Numero de Estacionamientoss</label>
-                    <select class="form-control" name="NumeroEstacionamientos">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Superficie</label>
-                    <input type="number" class="form-control" name="Superficie">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Descripcion</label>
-                    <textarea class="form-control" name="Descripcion" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Precio</label>
-                    <input type="number" class="form-control" name="Precio">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Tipo de Vivienda</label>
-                    <select class="form-control" name="TipoVivienda">
-                        <option>Casa</option>
-                        <option>Departanento</option>
-                        <option>Rancho</option>
-                        <option>Quinta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Nombre del album</label>
+                        <select class="form-control" name="AlbumFotos" required>
+                            <% data.forEach(album=> { %>
+                                <option value=<%=album.idAlbum%>>
+                                    <%=album.NombreAlbum%>
+                                </option>
+                                <% }); %>
 
-                    </select>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Vendedor</label>
+                        <select class="form-control" name="Vendedor" required>
+                            <% data2.forEach(Vendedor=> { %>
+                                <option value=<%=Vendedor.idVendedor%>>
+                                    <%=Vendedor.Nombre%>
+                                </option>
+                                <% }); %>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Ubicacion</label>
+                        <select class="form-control" name="Ubicacion" required>
+                            <% data3.forEach(Calle=> { %>
+                                <option value=<%=Calle.idCallesMazatlan%>>
+                                    <%=Calle.NombreCalle%>
+                                </option>
+                                <% }); %>
+
+                        </select>
+                    </div>
+                    <button class="btn-primary" type="submit">Agregar Nueva Casa</button>
+                </form>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <% Casas.forEach(Casa=> { %>
+                        <div class="col-6  mt-3">
+                            <div class="card">
+                                <h3 class="card-header">
+                                    <%= Casa.NombreCasa %>
+                                </h3>
+                                <div class="card-body">
+                                    <h4><strong>Vendedor: </strong>
+                                        <%= Casa.Nombre %>
+                                    </h4>
+                                    <p class="card-text"><strong>Descripcion:</strong>
+                                        <%= Casa.Descripcion %>
+                                    </p>
+                                    <ul>
+                                        <li><strong>Numero de Camas:</strong>
+                                            <%= Casa.NumeroCamas %>
+                                        </li>
+                                        <li><strong>Numero de Baños:</strong>
+                                            <%= Casa.NumbreBanios %>
+                                        </li>
+                                        <li><strong>Numero de Estacionamientos:</strong>
+                                            <%= Casa.NumeroEstacionamientos %>
+                                        </li>
+                                        <li><strong>Superficie:</strong>
+                                            <%= Casa.Superficie %>
+                                        </li>
+                                        <li><strong>Precio:</strong> $<%= Casa.Precio %>
+                                        </li>
+                                        <li><strong>Tipo de Vivienda:</strong>
+                                            <%= Casa.TipoVivienda %>
+                                        </li>
+                                    </ul>
+                                    <h5><strong>Ubicacion: </strong>
+                                        <%= Casa.NombreCalle %>
+                                    </h5>
+                                    <h5><strong>Nombre del Album de Fotos: </strong>
+                                        <%= Casa.NombreAlbum %>
+                                    </h5>
+
+                                    <div class="card-body">
+                                        <a href="/CMS2/BorrarCasa/<%= Casa.idAlbum  %> " class="card-link">Borrar
+                                            Casa</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <% }); %>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Nombre del album</label>
-                    <select class="form-control" name="AlbumFotos">
-                        <% data.forEach(album=> { %>
-                            <option value=<%=album.idAlbum%>>
-                                <%=album.NombreAlbum%>
-                            </option>
-                            <% }); %>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Vendedor</label>
-                    <select class="form-control" name="Vendedor">
-                        <% data2.forEach(Vendedor=> { %>
-                            <option value=<%=Vendedor.idVendedor%>>
-                                <%=Vendedor.Nombre%>
-                            </option>
-                            <% }); %>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Ubicacion</label>
-                    <select class="form-control" name="Ubicacion">
-                        <% data3.forEach(Calle=> { %>
-                            <option value=<%=Calle.idCallesMazatlan%>>
-                                <%=Calle.NombreCalle%>
-                            </option>
-                            <% }); %>
-
-                    </select>
-                </div>
-                <button class="btn-primary" type="submit">Agregar Nueva Casa</button>
-            </form>
-        </div>
+            </div>
 
 
 
-        <%- include("templates/Footer") %>
+
+
+
+
+
+            <% } else{ %>
+                <h1><strong>
+                        <%=name %>
+                    </strong></h1>
+                <a href="login" class="a-login">Ir al LOGIN</a>
+                <% } %>
+                    <%- include("templates/Footer") %>

@@ -1,31 +1,82 @@
-<%- include("templates/Head") %>
-    <%- include("templates/Navbar") %>
+<% if(login) { %>
+    <%- include("templates/Head") %>
+        <%- include("templates/Navbar") %>
 
-        <body>
-            <div class="container">
-                <h1>Subir Imagenes Para Nuevo Album</h1>
+            <body>
+                <div class="container">
+                    <h1>Subir Imagenes Para Nuevo Album</h1>
 
-                <form method="POST" action="/CMS2/AgregarAlbum" enctype="multipart/form-data">
-                    <label for="exampleFormControlInput1">Nombre del Album</label>
-                    <input type="text" class="form-control" name="NombreAlbum" placeholder="Nombre...">
-                    <!-- <input type="file" name="image" multiple>
-                    <input type="submit"> -->
-                    <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="image" multiple>
-                            <label class="custom-file-label" for="inputGroupFile02"
-                                aria-describedby="inputGroupFileAddon02">Seleccionar Imagenes</label>
+                    <form method="POST" action="/CMS2/AgregarAlbum" enctype="multipart/form-data">
+                        <label for="exampleFormControlInput1">Nombre del Album</label>
+                        <input type="text" class="form-control" name="NombreAlbum" placeholder="Nombre..." required>
+
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="image" multiple required>
+                                <label class="custom-file-label" for="inputGroupFile02"
+                                    aria-describedby="inputGroupFileAddon02">Seleccionar Imagenes</label>
+                            </div>
+
                         </div>
+                        <button type="submit" class="btn btn-primary">Crear Album</button>
+                    </form>
 
+                </div>
+                <div class="container">
+                    <div class="row">
+
+
+                        <% Albumes.forEach(Album=> { %>
+                            <div class="col-6 text-center mt-3">
+                                <h4>
+                                    <%= Album.NombreAlbum %>
+                                </h4>
+                                <div id="Album<%= Album.idAlbum %>" class="carousel slide" data-ride="carousel"
+                                    data-interval="false">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active ">
+                                            <img src='https://acmdsolutions.com/Images/<%= Album.Foto1 %>'
+                                                class="d-block w-100" alt="Foto1">
+                                        </div>
+
+                                        <% Fotos=[Album.Foto2,Album.Foto3,Album.Foto4,Album.Foto5,Album.Foto6,Album.Foto7,Album.Foto8,Album.Foto9,Album.Foto10,Album.Foto11,Album.Foto12,Album.Foto13,Album.Foto14,Album.Foto15,Album.Foto16,Album.Foto17,
+                                            Album.Foto18,Album.Foto19,Album.Foto20] %>
+
+                                            <% for (var i=0; i <=18; i++ ) { %>
+                                                <% if (Fotos[i]!==null) { %>
+                                                    <div class="carousel-item">
+
+                                                        <img src='https://acmdsolutions.com/Images/<%=Fotos[i] %>'
+                                                            class="d-block w-100" alt="Foto1">
+                                                    </div>
+                                                    <%} %>
+                                                        <% } %>
+
+
+                                    </div>
+                                    <a class="carousel-control-prev" rel=”noreferrer” href="#Album<%=Album.idAlbum %> "
+                                        role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" rel=”noreferrer” href="#Album<%=Album.idAlbum %> "
+                                        role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <% }); %>
                     </div>
-                    <button type="submit" class="btn btn-primary">Crear Album</button>
-                </form>
-
-            </div>
 
 
 
-        </body>
-
-
-        <%- include("templates/Footer") %>
+            </body>
+            <%- include("templates/Footer") %>
+                <% } else{ %>
+                    <h1><strong>
+                            <%=name %>
+                        </strong></h1>
+                    <a href="login" class="a-login">Ir al LOGIN</a>
+                    <% } %>

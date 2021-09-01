@@ -1,42 +1,89 @@
-<%- include("templates/Head") %>
-    <%- include("templates/Navbar") %>
+<% if(login) { %>
 
-        <div class="container">
+    <%- include("templates/Head") %>
+        <%- include("templates/Navbar") %>
+            <div class="container">
 
-            <form method="POST" action="/CMS2/AgregarVendedor" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Nombre del Vendedor</label>
-                    <input type="text" class="form-control" name="Nombre" placeholder="Nombre...">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Celular</label>
-                    <input type="number" class="form-control" name="Celular" placeholder="Numero...">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Correo</label>
-                    <input type="email" class="form-control" name="Correo" placeholder="name@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Contraseña del Vendedor</label>
-                    <input type="text" class="form-control" name="Contraseña" placeholder="Contraseña...">
-                </div>
-
-                <div class="input-group mb-3">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="image">
-                        <label class="custom-file-label" for="inputGroupFile02"
-                            aria-describedby="inputGroupFileAddon02">Seleccionar Foto</label>
+                <form method="POST" action="/CMS2/AgregarVendedor" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombre del Vendedor</label>
+                        <input type="text" class="form-control" name="Nombre" placeholder="Nombre..." required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Celular</label>
+                        <input type="number" class="form-control" name="Celular" placeholder="Numero..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Correo</label>
+                        <input type="email" class="form-control" name="Correo" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Contraseña del Vendedor</label>
+                        <input type="text" class="form-control" name="Contraseña" placeholder="Contraseña..." required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image" required>
+                            <label class="custom-file-label" for="inputGroupFile02"
+                                aria-describedby="inputGroupFileAddon02">Seleccionar Foto</label>
+                        </div>
+
+                    </div>
+                    <button class="btn-primary" type="submit">Agregar Nuevo Vendedor</button>
+                </form>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+
+                    <% Vendedores.forEach(Vendedor=> { %>
+
+                        <div class="card col-4 " style="width: 18rem;">
+                            <img src='https://acmdsolutions.com/Images/<%= Vendedor.Foto %>' class="card-img-top"
+                                alt="Foto del vendedor">
+                            <!--  <div class="card-body">
+                                <h5 class="card-title">
+                                    Nombre del vendedor: <%= Vendedor.Nombre %>
+                                </h5>
+
+                            </div> -->
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <strong> Nombre:</strong>
+                                    <%= Vendedor.Nombre %>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Corrreo Electronico:</strong>
+                                    <%= Vendedor.Correo %>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Numero de celular:</strong>
+                                    <%= Vendedor.Celular %>
+                                </li>
+
+                            </ul>
+                            <div class="card-body">
+                                <a href="/CMS2/BorrarVendedor/<%= Vendedor.idVendedor  %> " class="card-link">Borrar
+                                    Usuario</a>
+
+                            </div>
+                        </div>
+
+                        <% }); %>
+
+
+
                 </div>
-                <button class="btn-primary" type="submit">Agregar Nuevo Vendedor</button>
-            </form>
-        </div>
+            </div>
 
 
-        </div>
-
-
-
-        <%- include("templates/Footer") %>
+            <% } else{ %>
+                <h1><strong>
+                        <%=name %>
+                    </strong></h1>
+                <a href="login" class="a-login">Ir al LOGIN</a>
+                <% } %>
+                    <%- include("templates/Footer") %>
